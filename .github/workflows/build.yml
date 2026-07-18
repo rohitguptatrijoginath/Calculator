@@ -27,26 +27,16 @@ jobs:
           pip install --upgrade pip
           pip install Cython==0.29.33 buildozer
 
-      # === सबसे महत्वपूर्ण स्टेप: License Acceptance (Non-interactive) ===
-      - name: Accept Android SDK Licenses
-        run: |
-          mkdir -p $HOME/.android
-          echo "count=0" > $HOME/.android/repositories.cfg
-          
-          # Buildozer के SDK path पर लाइसेंस स्वीकार करें
-          SDK_PATH="$HOME/.buildozer/android/platform/android-sdk"
-          
-          if [ -d "$SDK_PATH/cmdline-tools/latest/bin" ]; then
-            yes | $SDK_PATH/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          fi
-          
-          if [ -d "$SDK_PATH/tools/bin" ]; then
-            yes | $SDK_PATH/tools/bin/sdkmanager --licenses || true
-          fi
-
       - name: Build APK
         run: buildozer android debug
         env:
+          # === ये Environment Variables जरूरी हैं ===
+          ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
+          ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
+          ANDROID_NDK_ROOT: /home/runner/.buildozer/android/platform/android-ndk-r25b
+          ANDROID_NDK_HOME: /home/runner/.buildozer/android/platform/android-ndk-r25b
+          ANDROIDAPI: 31
+          NDKAPI: 21
           BUILDOZER_ALLOW_ORG_NAME_START: 1
 
       - name: Upload APK
