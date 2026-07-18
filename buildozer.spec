@@ -4,7 +4,6 @@ package.name = calculator
 package.domain = org.test
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
-source.include_patterns = assets/*
 version = 0.1
 requirements = python3,kivy==2.2.1
 orientation = portrait
