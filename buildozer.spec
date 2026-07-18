@@ -9,9 +9,9 @@ requirements = python3,kivy
 orientation = portrait
 fullscreen = 0
 android.presplash_color = #FFFFFF
-android.api = 33
+android.api = 31
 android.minapi = 21
-android.sdk = 33
-android.ndk = 25b
+android.sdk = 31
+​android.ndk_api = 21
 android.archs = arm64-v8a, armeabi-v7a
 
